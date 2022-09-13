@@ -1,29 +1,37 @@
 package com.bridgelabz.gambler;
 
 public class GamblingSimulation {
-    static int Daily_Stake = 100;
-    static int Bet_Per_Game = 1;
     static int win = 1;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Simulation");
         resignDayCheck();
     }
-    static void winLossCheck(){
+
+    static int winLossCheck() {
         int random = (int) (Math.random() * 10) % 2;
         if (random == win) {
-            System.out.println("You Won");
-            Daily_Stake++;
+            return 1;
         } else {
-            System.out.println("You Loss");
-            Daily_Stake--;
+            return -1;
         }
-        System.out.println("Dily Stake " + Daily_Stake);
     }
-    static void resignDayCheck(){
-        while(Daily_Stake < 150 && Daily_Stake > 50){
-            winLossCheck();
+
+    static void resignDayCheck() {
+        int totalWinnigAmount = 0;
+        for (int day = 1; day <= 20; day++) {
+            int Daily_Stake = 100;
+            int winningAmount = 0;
+            System.out.println("Day " + day);
+            while (Daily_Stake < 150 && Daily_Stake > 50) {
+                Daily_Stake += winLossCheck();
+            }
+            winningAmount += (Daily_Stake - 100);
+            totalWinnigAmount += winningAmount;
+            System.out.println("Winning Amt " + winningAmount);
+            totalWinnigAmount += Daily_Stake;
         }
-        System.out.println("Resign For the Day!!!");
+        System.out.println("-----------------------------------");
+        System.out.println("Total Money After 20 Days are: " + totalWinnigAmount);
     }
 }
