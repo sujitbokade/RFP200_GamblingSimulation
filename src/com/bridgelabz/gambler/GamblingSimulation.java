@@ -7,6 +7,9 @@ public class GamblingSimulation {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Simulation");
+        resignDayCheck();
+    }
+    static void winLossCheck(){
         int random = (int) (Math.random() * 10) % 2;
         if (random == win) {
             System.out.println("You Won");
@@ -16,5 +19,11 @@ public class GamblingSimulation {
             Daily_Stake--;
         }
         System.out.println("Dily Stake " + Daily_Stake);
+    }
+    static void resignDayCheck(){
+        while(Daily_Stake < 150 && Daily_Stake > 50){
+            winLossCheck();
+        }
+        System.out.println("Resign For the Day!!!");
     }
 }
