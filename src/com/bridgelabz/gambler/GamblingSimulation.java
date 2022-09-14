@@ -19,6 +19,9 @@ public class GamblingSimulation {
 
     static void resignDayCheck() {
         int totalWinnigAmount = 0;
+        int winDaysCount = 0;
+        int looseDaysCount = 0;
+
         for (int day = 1; day <= 20; day++) {
             int Daily_Stake = 100;
             int winningAmount = 0;
@@ -28,10 +31,19 @@ public class GamblingSimulation {
             }
             winningAmount += (Daily_Stake - 100);
             totalWinnigAmount += winningAmount;
+            if (winningAmount > 0) {
+                totalWinnigAmount = totalWinnigAmount + winningAmount;
+                winDaysCount++;
+            } else {
+                looseDaysCount++;
+                totalWinnigAmount = totalWinnigAmount + winningAmount;
+            }
             System.out.println("Winning Amt " + winningAmount);
             totalWinnigAmount += Daily_Stake;
         }
         System.out.println("-----------------------------------");
         System.out.println("Total Money After 20 Days are: " + totalWinnigAmount);
+        System.out.println("won days = " + winDaysCount);
+        System.out.println("loose days = " + looseDaysCount);
     }
 }
